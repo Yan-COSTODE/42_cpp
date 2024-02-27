@@ -1,0 +1,3 @@
+constructor Weapon
+HumanB, same as HumanA but no weapon in constructor, but function setWeapon(Weapon _weapon)
+so HumanB don't always have a weapon, be wary in the function attack
