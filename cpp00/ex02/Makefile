@@ -1,7 +1,7 @@
 CC=c++
-NAME = megaphone
-SRCS = megaphone.cpp
-HEADER = philo.h
+NAME = account
+SRCS = Account.cpp tests.cpp
+HEADER = Account.hpp
 OBJS = $(SRCS:.cpp=.o)
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
