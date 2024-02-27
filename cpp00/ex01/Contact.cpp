@@ -33,7 +33,7 @@ std::string Contact::ToStringElem(std::string _elem)
 {
 	const int _width = 10;
 
-	if (_elem.length() >= 10)
+	if (_elem.length() > 10)
 		return _elem.substr(0, _width - 1) + ".";
 	return _elem.insert(0, _width - _elem.length(), ' ');
 }
