@@ -17,6 +17,6 @@ int main()
 		else if (input == "SEARCH")
 			phoneBook.SearchContact();
 		else if (input != "EXIT")
-			std::cout << "\x1b[1;6;31mWrong Input\x1b[0m" << std::endl;
+			std::cout << "\x1b[1;31mWrong Input\x1b[0m" << std::endl;
 	} while (input != "EXIT");
 }

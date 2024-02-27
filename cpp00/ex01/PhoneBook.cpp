@@ -14,7 +14,7 @@ PhoneBook::PhoneBook()
 void PhoneBook::ShowContact(int _index)
 {
 	if (_index > currentContact)
-		std::cout << "\x1b[1;6;31mWrong Index\x1b[0m" << std::endl;
+		std::cout << "\x1b[1;31mWrong Index\x1b[0m" << std::endl;
 	else
 		std::cout << contacts[_index].ToString() << std::endl;
 }
@@ -47,7 +47,7 @@ void PhoneBook::AddContact()
 
 	if (_firstName.empty() || _lastName.empty() || _nickName.empty() || _phoneNumber.empty() || _darkestSecret.empty())
 	{
-		std::cout << "\x1b[1;6;31mAll the fields aren't correct\x1b[0m" << std::endl;
+		std::cout << "\x1b[1;31mAll the fields aren't correct\x1b[0m" << std::endl;
 		return;
 	}
 
@@ -78,7 +78,7 @@ void PhoneBook::SearchContact()
 	_ss >> _index;
 
 	if (_ss.fail())
-		std::cout << "\x1b[1;6;31mWrong Index\x1b[0m" << std::endl;
+		std::cout << "\x1b[1;31mWrong Index\x1b[0m" << std::endl;
 	else
 		ShowContact(_index);
 }
