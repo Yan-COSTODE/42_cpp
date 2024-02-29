@@ -50,5 +50,5 @@ void Harl::complain(std::string level)
 			return;
 		}
 	}
-	std::cout << "\x1b[1;31mHarl doesn't know this level\x1b[0m" << std::endl;
+	std::cout << "\x1b[1;31m[ Probably complaining about insignificant problems ]\x1b[0m" << std::endl;
 }
