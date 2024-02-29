@@ -11,7 +11,7 @@ int main()
 	std::cout << "Type \x1b[1;31mEXIT\x1b[1;37m to quit\x1b[0m";
 	do {
 		std::cout << "\n\x1b[1;37mType here: \x1b[0m";
-		std::cin >> input;
+		getline(std::cin, input);
 		if (input == "ADD")
 			phoneBook.AddContact();
 		else if (input == "SEARCH")

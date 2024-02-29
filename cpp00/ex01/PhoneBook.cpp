@@ -35,15 +35,15 @@ void PhoneBook::AddContact()
 		_index = firstAdded;
 
 	std::cout << "\n\x1b[1;32mFirst Name: \x1b[0;32m";
-	std::cin >> _firstName;
+	getline(std::cin, _firstName);
 	std::cout << "\x1b[1;32mLast Name: \x1b[0;32m";
-	std::cin >> _lastName;
+	getline(std::cin,_lastName);
 	std::cout << "\x1b[1;32mNickname: \x1b[0;32m";
-	std::cin >> _nickName;
+	getline(std::cin,_nickName);
 	std::cout << "\x1b[1;32mPhone Number: \x1b[0;32m";
-	std::cin >> _phoneNumber;
+	getline(std::cin,_phoneNumber);
 	std::cout << "\x1b[1;32mDarkest Secret: \x1b[0;32m";
-	std::cin >> _darkestSecret;
+	getline(std::cin,_darkestSecret);
 
 	if (_firstName.empty() || _lastName.empty() || _nickName.empty() || _phoneNumber.empty() || _darkestSecret.empty())
 	{
@@ -73,7 +73,7 @@ void PhoneBook::SearchContact()
 	std::cout << "\n\x1b[1;35mHere is your contact list\x1b[0m\n";
 	ShowAllContact();
 	std::cout << "\n\x1b[1;35mType index to inspect: \x1b[0;35m";
-	std::cin >> _input;
+	getline(std::cin, _input);
 	std::stringstream _ss(_input);
 	_ss >> _index;
 

@@ -41,7 +41,7 @@ void FragTrap::highFivesGuys(void)
 	do
 	{
 		std::cout << "\x1b[1;37mYour response : \x1b[0m";
-		std::cin >> _input;
+		getline(std::cin, _input);
 		if (_input == "yes")
 			std::cout << "\x1b[1;37mFragTrap is happy !!!\x1b[0m" << std::endl;
 		else if (_input == "no")
