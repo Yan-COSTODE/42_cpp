@@ -9,7 +9,9 @@ int main()
 	std::cout << "Type \x1b[1;32mADD\x1b[1;37m to add a new contact" << std::endl;
 	std::cout << "Type \x1b[1;35mSEARCH\x1b[1;37m to search a contact" << std::endl;
 	std::cout << "Type \x1b[1;31mEXIT\x1b[1;37m to quit\x1b[0m";
-	do {
+
+	do
+	{
 		std::cout << "\n\x1b[1;37mType here: \x1b[0m";
 		getline(std::cin, input);
 		if (input == "ADD")
