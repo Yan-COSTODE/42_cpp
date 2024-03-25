@@ -48,7 +48,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &_other)
 
 void DiamondTrap::attack(const std::string &target)
 {
-	ClapTrap::attack(target);
+	ScavTrap::attack(target);
 }
 
 void DiamondTrap::beRepaired(unsigned int amount)
