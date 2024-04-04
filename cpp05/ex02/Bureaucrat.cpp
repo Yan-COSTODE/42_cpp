@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::~Bureaucrat()
 {
@@ -66,16 +67,26 @@ void Bureaucrat::LoseGrade()
 		throw Bureaucrat::GradeTooLowException();
 }
 
-void Bureaucrat::signForm(int _reason, const std::string& _name) const
+void Bureaucrat::signForm(int _reason, const AForm &form) const
 {
 	switch (_reason) {
-		case 0 : std::cout << "\x1b[1;37m" << name << " signed " << _name << ".\n\x1b[0m";
+		case 0 : std::cout << "\x1b[1;37m" << name << " signed " << form.getName() << ".\n\x1b[0m";
 			break;
-		case 1 : std::cout << "\x1b[1;37m" << name << " couldn't sign " << _name << " because it's already signed.\n\x1b[0m";
+		case 1 : std::cout << "\x1b[1;37m" << name << " couldn't sign " << form.getName() << " because it's already signed.\n\x1b[0m";
 			break;
-		case 2 : std::cout << "\x1b[1;37m" << name << " couldn't sign " << _name << " because his grade is too low.\n\x1b[0m";
+		case 2 : std::cout << "\x1b[1;37m" << name << " couldn't sign " << form.getName() << " because his grade is too low.\n\x1b[0m";
 			break;
-		default: std::cout << "\x1b[1;37m" << name << " couldn't sign " << _name << " because unknown reason.\n\x1b[0m";
+		default: std::cout << "\x1b[1;37m" << name << " couldn't sign " << form.getName() << " because unknown reason.\n\x1b[0m";
 	}
+}
+
+void Bureaucrat::executedForm(const AForm &form) const
+{
+	if (!form.getStatus())
+		std::cout << "\x1b[1;37m" << name << " couldn't execute " << form.getName() << " because it's not signed.\n\x1b[0m";
+	else if (grade <= form.getGradeExec())
+		std::cout << "\x1b[1;37m" << name << " executed " << form.getName() << ".\n\x1b[0m";
+	else
+		std::cout << "\x1b[1;37m" << name << " couldn't execute " << form.getName() << " because his grade is too low.\n\x1b[0m";
 }
 

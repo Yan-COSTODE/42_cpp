@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 
+class AForm;
+
 class Bureaucrat {
 	class GradeTooHighException : public std::exception	{
 		virtual const char *what() const throw()
@@ -35,7 +37,8 @@ class Bureaucrat {
 		int getGrade() const;
 		void GainGrade();
 		void LoseGrade();
-		void signForm(int _reason, const std::string& _name) const;
+		void signForm(int _reason, const AForm& form) const;
+		void executedForm(const AForm& form) const;
 };
 
 #endif
