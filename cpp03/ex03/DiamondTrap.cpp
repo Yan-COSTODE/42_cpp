@@ -8,7 +8,7 @@ DiamondTrap::~DiamondTrap()
 DiamondTrap::DiamondTrap()
 {
 	std::cout << "\x1b[1;32mDiamondTrap Default constructor called" << std::endl;
-	name = "ClapTrap";
+	name = "DiamondTrap";
 	ClapTrap::name = name + "_clap_name";
 	hitPoints = FragTrap::hitPoints;
 	energyPoints = ScavTrap::energyPoints;
@@ -60,7 +60,6 @@ void DiamondTrap::takeDamage(unsigned int amount)
 {
 	ClapTrap::takeDamage(amount);
 }
-
 
 void DiamondTrap::whoAmI()
 {

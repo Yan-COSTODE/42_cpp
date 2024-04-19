@@ -8,10 +8,22 @@ Character::~Character()
 		if (materia[i])
 			delete materia[i];
 	}
+
+	List *current, *tmp;
+
+	current = destroy;
+	while (current)
+	{
+		tmp = current;
+		current = current->next;
+		delete tmp->value;
+		delete tmp;
+	}
 }
 
 Character::Character()
 {
+	destroy = NULL;
 	name = "Character";
 
 	for (int i = 0; i < 4; i++)
@@ -20,6 +32,7 @@ Character::Character()
 
 Character::Character(std::string const &_name)
 {
+	destroy = NULL;
 	name = _name;
 
 	for (int i = 0; i < 4; i++)
@@ -28,6 +41,7 @@ Character::Character(std::string const &_name)
 
 Character::Character(const Character &_other)
 {
+	destroy = _other.destroy;
 	name = _other.name;
 
 	for (int i = 0; i < 4; i++)
@@ -47,6 +61,7 @@ Character::Character(const Character &_other)
 
 Character &Character::operator=(const Character &_other)
 {
+	destroy = _other.destroy;
 	name = _other.name;
 
 	for (int i = 0; i < 4; i++)
@@ -93,6 +108,18 @@ void Character::unequip(int idx)
 	{
 		std::cout << "\x1b[1;31mNothing to unequip here\x1b[0m" << std::endl;
 		return;
+	}
+
+	if (!destroy)
+		destroy = new List(materia[idx]);
+	else
+	{
+		List *last;
+
+		last = destroy;
+		while (last->next)
+			last = last->next;
+		last->next = new List(materia[idx]);
 	}
 
 	materia[idx] = NULL;
