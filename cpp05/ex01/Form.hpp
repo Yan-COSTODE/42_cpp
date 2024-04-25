@@ -33,12 +33,13 @@ class Form {
 		Form(const Form& _other);
 		Form(const std::string& _name, int _gradeSign, int _gradeExec);
 		Form& operator=(const Form& _other);
-		friend std::ostream& operator<<(std::ostream& os, const Form& _bureaucrat);
 		const std::string& getName() const;
 		bool getStatus() const;
 		const int& getGradeSign() const;
 		const int& getGradeExec() const;
 		void beSigned(const Bureaucrat& _bureaucrat);
 };
+
+std::ostream& operator<<(std::ostream& os, const Form& _bureaucrat);
 
 #endif

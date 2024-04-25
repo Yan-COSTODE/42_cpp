@@ -40,7 +40,6 @@ class AForm {
 		AForm(const AForm& _other);
 		AForm(const std::string& _name, int _gradeSign, int _gradeExec);
 		AForm& operator=(const AForm& _other);
-		friend std::ostream& operator<<(std::ostream& os, const AForm& _bureaucrat);
 		const std::string& getName() const;
 		bool getStatus() const;
 		const int& getGradeSign() const;
@@ -49,5 +48,7 @@ class AForm {
 		void execute(const Bureaucrat& _bureaucrat);
 		virtual void executeAction() = 0;
 };
+
+std::ostream& operator<<(std::ostream& os, const AForm& _bureaucrat);
 
 #endif

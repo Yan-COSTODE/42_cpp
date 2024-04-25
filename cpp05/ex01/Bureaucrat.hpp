@@ -30,12 +30,13 @@ class Bureaucrat {
 		Bureaucrat(const Bureaucrat& _other);
 		Bureaucrat(const std::string& _name, int _grade);
 		Bureaucrat& operator=(const Bureaucrat& _other);
-		friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& _bureaucrat);
 		const std::string& getName() const;
 		int getGrade() const;
 		void GainGrade();
 		void LoseGrade();
 		void signForm(int _reason, const std::string& _name) const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& _bureaucrat);
 
 #endif

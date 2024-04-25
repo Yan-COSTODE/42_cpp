@@ -31,7 +31,6 @@ class Fixed {
 		bool operator<=(const Fixed& _other) const;
 		bool operator==(const Fixed& _other) const;
 		bool operator!=(const Fixed& _other) const;
-		friend std::ostream& operator<<(std::ostream& _output, const Fixed& _other);
 		static Fixed& min(Fixed& _one, Fixed& _two);
 		static const Fixed& min(const Fixed& _one, const Fixed& _two);
 		static Fixed& max(Fixed& _one, Fixed& _two);
@@ -41,5 +40,7 @@ class Fixed {
 		float toFloat(void) const;
 		int toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream& _output, const Fixed& _other);
 
 #endif

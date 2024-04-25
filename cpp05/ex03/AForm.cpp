@@ -37,13 +37,13 @@ AForm &AForm::operator=(const AForm &_other)
 
 std::ostream& operator<<(std::ostream& os, const AForm& _form)
 {
-	os << "\x1b[1;37m" << _form.name;
+	os << "\x1b[1;37m" << _form.getName();
 	if (_form.getStatus())
 		os << ", signed";
 	else
 		os << ", not signed";
-	os << ", can be signed by at least " << _form.gradeSign;
-	os << ", can be executed by at least " << _form.gradeExec << ".\x1b[0m";
+	os << ", can be signed by at least " << _form.getGradeSign();
+	os << ", can be executed by at least " << _form.getGradeExec() << ".\x1b[0m";
 	return os;
 }
 
