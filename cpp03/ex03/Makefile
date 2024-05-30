@@ -3,7 +3,7 @@ NAME = diamondTrap
 SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 OBJS = $(SRCS:.cpp=.o)
-CFLAGS = -Wall -Wextra -Werror -Wshadow -g -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 all:$(NAME)
 

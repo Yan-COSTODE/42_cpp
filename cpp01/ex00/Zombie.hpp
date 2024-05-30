@@ -10,10 +10,10 @@ class Zombie {
 		std::string name;
 
 	public:
-		~Zombie(void);
-		Zombie(void);
+		~Zombie();
+		Zombie();
 		Zombie(std::string _name);
-		void announce(void);
+		void announce();
 };
 
 void randomChump(std::string name);

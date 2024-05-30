@@ -14,37 +14,26 @@ MateriaSource::MateriaSource()
 	for (int i = 0; i < 4; i++)
 		materia[i] = NULL;
 }
+
 MateriaSource::MateriaSource(const MateriaSource &_other)
 {
-	for (int i = 0; i < 4; i++)
-	{
-		if (_other.materia[i])
-			materia[i] = _other.materia[i]->clone();
-		else
-			materia[i] = NULL;
-	}
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (_other.materia[i])
-			delete _other.materia[i];
-	}
+	*this = _other;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &_other)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (_other.materia[i])
-			materia[i] = _other.materia[i]->clone();
-		else
-			materia[i] = NULL;
+		if (materia[i])
+			delete materia[i];
 	}
 
 	for (int i = 0; i < 4; i++)
 	{
 		if (_other.materia[i])
-			delete _other.materia[i];
+			materia[i] = _other.materia[i]->clone();
+		else
+			materia[i] = NULL;
 	}
 
 	return *this;
@@ -72,5 +61,6 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 		if (materia[i] && materia[i]->getType() == type)
 			return materia[i]->clone();
 
+	std::cout << "\x1b[1;31mNo materia knowned as " << type << "\x1b[0m" << std::endl;
 	return NULL;
 }

@@ -13,8 +13,9 @@ Ice::Ice(std::string const &_type) : AMateria(_type)
 {
 }
 
-Ice::Ice(const Ice &_other) : AMateria(_other)
+Ice::Ice(const Ice &_other)
 {
+	*this = _other;
 }
 
 Ice &Ice::operator=(const Ice &_other)

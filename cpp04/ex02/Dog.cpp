@@ -6,28 +6,29 @@ Dog::~Dog()
 	delete brain;
 }
 
-Dog::Dog() : Animal()
+Dog::Dog() : AAnimal()
 {
 	std::cout << "\x1b[1;32mDog Default constructor called\x1b[0m" << std::endl;
 	type = "Dog";
 	brain = new Brain();
 }
 
-Dog::Dog(const Dog &_other) : Animal(_other)
+Dog::Dog(const Dog &_other)
 {
 	std::cout << "\x1b[1;32mDog Copy constructor called\x1b[0m" << std::endl;
-	brain = _other.brain;
+	*this = _other;
 }
 
 Dog &Dog::operator=(const Dog &_other)
 {
-	Animal::operator=(_other);
+	AAnimal::operator=(_other);
 	std::cout << "\x1b[1;32mDog Copy assignment constructor called\x1b[0m" << std::endl;
-	brain = _other.brain;
+	brain = new Brain();
+	*brain = *_other.brain;
 	return *this;
 }
 
 void Dog::makeSound() const
 {
-	std::cout << "\x1b[1;32mWOOOOOOOOOOF !!!!!!!!!!\x1b[0m" << std::endl;
+	std::cout << "\x1b[1;37mWOOOOOOOOOOF !!!!!!!!!!\x1b[0m" << std::endl;
 }

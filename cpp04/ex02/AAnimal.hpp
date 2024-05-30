@@ -5,12 +5,12 @@
 #include <string>
 #include <iostream>
 
-class Animal {
+class AAnimal {
 	protected:
 		std::string type;
 
 	public:
-		virtual ~Animal();
+		virtual ~AAnimal();
 		virtual void makeSound() const = 0;
 		virtual std::string getType() const;
 };

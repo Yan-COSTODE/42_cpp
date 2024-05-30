@@ -2,7 +2,7 @@
 
 Fixed::~Fixed()
 {
-	std::cout << "\x1b[1;31mDestructor called" << std::endl;
+	std::cout << "\x1b[1;31mDestructor called\x1b[0m" << std::endl;
 }
 
 Fixed::Fixed()

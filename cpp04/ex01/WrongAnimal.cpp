@@ -26,7 +26,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &_other)
 
 void WrongAnimal::makeSound() const
 {
-	std::cout << "\x1b[1;32m* LOUD SOUND *\x1b[0m" << std::endl;
+	std::cout << "\x1b[1;37m* QUIET SILENCE *\x1b[0m" << std::endl;
 }
 
 std::string WrongAnimal::getType() const

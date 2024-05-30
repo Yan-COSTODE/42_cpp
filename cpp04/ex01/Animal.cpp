@@ -14,7 +14,7 @@ Animal::Animal()
 Animal::Animal(const Animal &_other)
 {
 	std::cout << "\x1b[1;32mAnimal Copy constructor called\x1b[0m" << std::endl;
-	type = _other.type;
+	*this = _other;
 }
 
 Animal &Animal::operator=(const Animal &_other)
@@ -26,7 +26,7 @@ Animal &Animal::operator=(const Animal &_other)
 
 void Animal::makeSound() const
 {
-	std::cout << "\x1b[1;32m* LOUD SILENCE *\x1b[0m" << std::endl;
+	std::cout << "\x1b[1;37m* LOUD SILENCE *\x1b[0m" << std::endl;
 }
 
 std::string Animal::getType() const

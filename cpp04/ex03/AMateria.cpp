@@ -16,7 +16,7 @@ AMateria::AMateria(std::string const &_type)
 
 AMateria::AMateria(const AMateria &_other)
 {
-	type = _other.type;
+	*this = _other;
 }
 
 AMateria &AMateria::operator=(const AMateria &_other)

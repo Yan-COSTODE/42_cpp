@@ -24,6 +24,12 @@ Fixed::Fixed(const Fixed &_other)
 	value = _other.value;
 }
 
+Fixed &Fixed::operator=(const Fixed &_other)
+{
+	value = _other.value;
+	return *this;
+}
+
 Fixed &Fixed::operator++()
 {
 	++value;
@@ -50,65 +56,54 @@ Fixed Fixed::operator--(int)
 	return _tmp;
 }
 
-Fixed &Fixed::operator+(const Fixed &_other)
+Fixed Fixed::operator+(const Fixed &_other)
 {
-	value += _other.value;
-	return *this;
+	return Fixed(toFloat() + _other.toFloat());
 }
 
-Fixed &Fixed::operator-(const Fixed &_other)
+Fixed Fixed::operator-(const Fixed &_other)
 {
-	value -= _other.value;
-	return *this;
+	return Fixed(toFloat() - _other.toFloat());
 }
 
-Fixed &Fixed::operator*(const Fixed &_other)
+Fixed Fixed::operator*(const Fixed &_other)
 {
-	value = ((signed long long)value * (signed long long)_other.value) >> fractional;
-	return *this;
+	return Fixed(toFloat() * _other.toFloat());
 }
 
-Fixed &Fixed::operator/(const Fixed &_other)
+Fixed Fixed::operator/(const Fixed &_other)
 {
-	value = (signed long long)value << fractional / _other.value;
-	return *this;
-}
-
-
-Fixed &Fixed::operator=(const Fixed &_other)
-{
-	value = _other.value;
-	return *this;
+	return Fixed(toFloat() / _other.toFloat());
 }
 
 bool Fixed::operator>(const Fixed &_other) const
 {
-	return value > _other.value;
+	return toFloat() > _other.toFloat();
 }
 
 bool Fixed::operator<(const Fixed &_other) const
 {
-	return value < _other.value;
+	return toFloat() < _other.toFloat();
 }
 
 bool Fixed::operator>=(const Fixed &_other) const
 {
-	return value >= _other.value;
+	return toFloat() >= _other.toFloat();
 }
 
 bool Fixed::operator<=(const Fixed &_other) const
 {
-	return value <= _other.value;
+	return toFloat() <= _other.toFloat();
 }
 
 bool Fixed::operator==(const Fixed &_other) const
 {
-	return value == _other.value;
+	return toFloat() == _other.toFloat();
 }
 
 bool Fixed::operator!=(const Fixed &_other) const
 {
-	return value != _other.value;
+	return toFloat() != _other.toFloat();
 }
 
 std::ostream& operator<<(std::ostream &_output, const Fixed &_other)

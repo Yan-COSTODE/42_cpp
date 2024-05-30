@@ -1,9 +1,14 @@
 #include "Harl.hpp"
 
-int main(int argc, char **argv)
+int main()
 {
-	Harl harl = Harl();
+	Harl _harl = Harl();
 
-	for (int i = 1; i < argc; i++)
-		harl.complain(argv[i]);
+	_harl.complain("DEBUG");
+	_harl.complain("INFO");
+	_harl.complain("WARNING");
+	_harl.complain("ERROR");
+	_harl.complain("");
+	_harl.complain("OUI");
+
 }

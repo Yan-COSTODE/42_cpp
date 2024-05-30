@@ -13,7 +13,7 @@ int main()
 	do
 	{
 		std::cout << "\n\x1b[1;37mType here: \x1b[0m";
-		getline(std::cin, input);
+		GETLINE(input)
 		if (input == "ADD")
 			phoneBook.AddContact();
 		else if (input == "SEARCH")

@@ -2,8 +2,10 @@
 
 int main(void)
 {
-	Zombie *_zombiePtr = newZombie("Zombie Ptr");
-	_zombiePtr->announce();
-	randomChump("Zombie No Ptr");
-	delete _zombiePtr;
+	Zombie _gneu("Gneu");
+	_gneu.announce();
+	Zombie *_barbie = newZombie("Barbie");
+	_barbie->announce();
+	randomChump("Ken");
+	delete _barbie;
 }

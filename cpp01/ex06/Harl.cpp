@@ -11,7 +11,7 @@ Harl::Harl()
 void Harl::debug()
 {
 	std::cout << "\x1b[1;37m[ WARNING ]" << std::endl;
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger." << std::endl << std::endl;
+	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger." << std::endl << std::endl;
 	std::cout << "I really do\x1b[0m" << std::endl;
 }
 
@@ -34,13 +34,15 @@ void Harl::warning()
 void Harl::error()
 {
 	std::cout << "\x1b[1;37m[ ERROR ]" << std::endl;
-	std::cout << "This is unacceptable! I want to speak to the manager now.\x1b[0m" << std::endl << std::endl;
+	std::cout << "This is unacceptable!" << std::endl;
+	std::cout << "I want to speak to the manager now.\x1b[0m" << std::endl << std::endl;
 }
 
 void Harl::complain(std::string _level)
 {
 	const std::string _levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int _index;
+
 	for (_index = 0; _index < 4; _index++)
 		if (_levels[_index] == _level)
 			break;

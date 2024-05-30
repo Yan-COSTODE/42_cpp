@@ -5,10 +5,10 @@ int main(void)
 	FragTrap _robot = FragTrap("Robot");
 	_robot.highFivesGuys();
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 54; i++)
 	{
+		_robot.takeDamage(21);
 		_robot.attack("Human");
-		_robot.takeDamage(3);
-		_robot.beRepaired(2);
+		_robot.beRepaired(20);
 	}
 }

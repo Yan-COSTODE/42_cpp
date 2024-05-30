@@ -32,8 +32,8 @@ Character::Character()
 
 Character::Character(std::string const &_name)
 {
-	destroy = NULL;
 	name = _name;
+	destroy = NULL;
 
 	for (int i = 0; i < 4; i++)
 		materia[i] = NULL;
@@ -41,22 +41,7 @@ Character::Character(std::string const &_name)
 
 Character::Character(const Character &_other)
 {
-	destroy = _other.destroy;
-	name = _other.name;
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (_other.materia[i])
-			materia[i] = _other.materia[i]->clone();
-		else
-			materia[i] = NULL;
-	}
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (_other.materia[i])
-			delete _other.materia[i];
-	}
+	*this = _other;
 }
 
 Character &Character::operator=(const Character &_other)
@@ -66,16 +51,16 @@ Character &Character::operator=(const Character &_other)
 
 	for (int i = 0; i < 4; i++)
 	{
-		if (_other.materia[i])
-			materia[i] = _other.materia[i]->clone();
-		else
-			materia[i] = NULL;
+		if (materia[i])
+			delete materia[i];
 	}
 
 	for (int i = 0; i < 4; i++)
 	{
 		if (_other.materia[i])
-			delete _other.materia[i];
+			materia[i] = _other.materia[i]->clone();
+		else
+			materia[i] = NULL;
 	}
 
 	return *this;

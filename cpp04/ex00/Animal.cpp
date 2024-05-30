@@ -26,7 +26,7 @@ Animal &Animal::operator=(const Animal &_other)
 
 void Animal::makeSound() const
 {
-	std::cout << "\x1b[1;32m* LOUD SILENCE *\x1b[0m" << std::endl;
+	std::cout << "\x1b[1;37m* LOUD SILENCE *\x1b[0m" << std::endl;
 }
 
 std::string Animal::getType() const

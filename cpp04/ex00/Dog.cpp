@@ -25,5 +25,5 @@ Dog &Dog::operator=(const Dog &_other)
 
 void Dog::makeSound() const
 {
-	std::cout << "\x1b[1;32mWOOOOOOOOOOF !!!!!!!!!!\x1b[0m" << std::endl;
+	std::cout << "\x1b[1;37mWOOOOOOOOOOF !!!!!!!!!!\x1b[0m" << std::endl;
 }

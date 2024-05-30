@@ -3,13 +3,13 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <stdlib.h>
+#define GETLINE(_input) if (!std::getline(std::cin, _input)) {std::cerr << "\x1b[1;31m\nError: Failed to read input.\x1b[0m" << std::endl; exit (EXIT_FAILURE);}
 
 class PhoneBook {
 	private:
 		Contact contacts[8];
 		int currentContact;
-		int firstAdded;
-		int added;
 
 	private:
 		void ShowContact(int _index);
