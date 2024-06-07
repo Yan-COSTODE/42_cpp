@@ -188,6 +188,12 @@ bool ScalarConverter::parseArgs(const std::string &_str)
 		}
 	}
 
+	if (!isdigit(_str[_str.length() - 1]) && _str[_str.length() - 1] != 'f')
+	{
+		std::cerr << "\x1b[1;31mparse: final character should be digit or f\n\x1b[0m";
+		return false;
+	}
+
 	for (size_t _i = 0; _i < _str.length(); _i++)
 	{
 		if (!isdigit(_str[_i]) && _str[_i] != '.' && _i + 1 < _str.length())
