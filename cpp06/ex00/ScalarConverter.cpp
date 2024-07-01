@@ -92,7 +92,7 @@ bool ScalarConverter::convertFromInt(ScalarConverter::Data &_data, const std::st
 	if (_data.i.data > 127 || _data.i.data < -127)
 		_data.c = Converted<char>(false);
 	else
-		_data.c = Converted<char>(true, _data.i.data);
+		_data.c = Converted<char>(true, static_cast<char>(_data.i.data));
 	_data.f = Converted<float>(true, static_cast<float>(_convert));
 	_data.d = Converted<double>(true, _convert);
 	return true;
@@ -140,57 +140,57 @@ void ScalarConverter::showConvert(ScalarConverter::Data &_data)
 	if (_data.c.status)
 	{
 		if (isprint(_data.c.data))
-			std::cout << "\x1b[1;37mchar: '" << _data.c.data << "'\n\x1b[0m";
+			std::cout << "\x1b[1;37mchar: '" << _data.c.data << "'\x1b[0m"  << std::endl;
 		else
-			std::cout << "\x1b[1;37mchar: Non displayable\n\x1b[0m";
+			std::cout << "\x1b[1;37mchar: Non displayable\x1b[0m" << std::endl;
 	}
 	else
-		std::cout << "\x1b[1;37mchar: impossible\n\x1b[0m";
+		std::cout << "\x1b[1;37mchar: impossible\x1b[0m" << std::endl;
 
 	if (_data.i.status)
-		std::cout << "\x1b[1;37mint: " << _data.i.data << "\n\x1b[0m";
+		std::cout << "\x1b[1;37mint: " << _data.i.data << "\x1b[0m" << std::endl;
 	else
-		std::cout << "\x1b[1;37mint: impossible\n\x1b[0m";
+		std::cout << "\x1b[1;37mint: impossible\x1b[0m" << std::endl;
 
 	if (_data.f.status)
 	{
 		if (_data.f.brut != "")
-			std::cout << "\x1b[1;37mfloat: " << _data.f.brut << "f\n\x1b[0m";
+			std::cout << "\x1b[1;37mfloat: " << _data.f.brut << "f\x1b[0m" << std::endl;
 		else
-			std::cout << std::fixed << std::setprecision(_data.precision) << "\x1b[1;37mfloat: " << _data.f.data << "f\n\x1b[0m";
+			std::cout << std::fixed << std::setprecision(_data.precision) << "\x1b[1;37mfloat: " << _data.f.data << "f\x1b[0m" << std::endl;
 	}
 	else
-		std::cout << "\x1b[1;37mfloat: impossible\n\x1b[0m";
+		std::cout << "\x1b[1;37mfloat: impossible\x1b[0m" << std::endl;
 
 	if (_data.d.status)
 	{
 		if (_data.d.brut != "")
-			std::cout << "\x1b[1;37mdouble: " << _data.d.brut << "\n\x1b[0m";
+			std::cout << "\x1b[1;37mdouble: " << _data.d.brut << "\x1b[0m" << std::endl;
 		else
-			std::cout << std::fixed << std::setprecision(_data.precision) << "\x1b[1;37mdouble: " << _data.d.data << "\n\x1b[0m";
+			std::cout << std::fixed << std::setprecision(_data.precision) << "\x1b[1;37mdouble: " << _data.d.data << "\x1b[0m" << std::endl;
 	}
 	else
-		std::cout << "\x1b[1;37mdouble: impossible\n\x1b[0m";
+		std::cout << "\x1b[1;37mdouble: impossible\x1b[0m" << std::endl;
 }
 
 bool ScalarConverter::parseArgs(const std::string &_str)
 {
 	int _point = 0;
 
-	if (!isdigit(_str[0]))
+	if (!isdigit(_str[0]) && _str[0] != '+' && _str[0] != '-')
 	{
 		if (_str.length() == 1)
 			return true;
 		else if (_str.length() != 1)
 		{
-			std::cerr << "\x1b[1;31mparse: character need to be alone\n\x1b[0m";
+			std::cerr << "\x1b[1;31mparse: character need to be alone\x1b[0m" << std::endl;
 			return false;
 		}
 	}
 
 	if (!isdigit(_str[_str.length() - 1]) && _str[_str.length() - 1] != 'f')
 	{
-		std::cerr << "\x1b[1;31mparse: final character should be digit or f\n\x1b[0m";
+		std::cerr << "\x1b[1;31mparse: final character should be digit or f\x1b[0m" << std::endl;
 		return false;
 	}
 
@@ -198,7 +198,13 @@ bool ScalarConverter::parseArgs(const std::string &_str)
 	{
 		if (!isdigit(_str[_i]) && _str[_i] != '.' && _i + 1 < _str.length())
 		{
-			std::cerr << "\x1b[1;31mparse: there is stranded character\n\x1b[0m";
+            if (_str[_i] == 'f' && _i + 1 == _str.length())
+                continue;
+
+            if ((_str[_i] == '+' || _str[_i] == '-') && _i == 0)
+                continue;
+
+			std::cerr << "\x1b[1;31mparse: there is stranded character\x1b[0m" << std::endl;
 			return false;
 		}
 	}
@@ -210,17 +216,17 @@ bool ScalarConverter::parseArgs(const std::string &_str)
 			_point++;
 			if (_point > 1)
 			{
-				std::cerr << "\x1b[1;31mparse: multiple points\n\x1b[0m";
+				std::cerr << "\x1b[1;31mparse: multiple points\x1b[0m" << std::endl;
 				return false;
 			}
 			else if (_i + 1 == _str.length())
 			{
-				std::cerr << "\x1b[1;31mparse: point misplaced\n\x1b[0m";
+				std::cerr << "\x1b[1;31mparse: point misplaced\x1b[0m" << std::endl;
 				return false;
 			}
 			else if (!isdigit(_str[_i + 1]))
 			{
-				std::cerr << "\x1b[1;31mparse: point misplaced\n\x1b[0m";
+				std::cerr << "\x1b[1;31mparse: point misplaced\x1b[0m" << std::endl;
 				return false;
 			}
 		}
@@ -233,15 +239,21 @@ void ScalarConverter::convert(const std::string &_str)
 {
 	Data _data;
 
+    if (convertFromBrut(_data, _str))
+    {
+        _data.precision = getPrecision(_str);
+        showConvert(_data);
+        return;
+    }
+
 	if (!parseArgs(_str))
 		return;
 
-	if (!convertFromBrut(_data, _str))
-		if (!convertFromChar(_data, _str))
-			if (!convertFromInt(_data, _str))
-				if (!convertFromFloat(_data, _str))
-					convertFromDouble(_data, _str);
+    if (!convertFromChar(_data, _str))
+        if (!convertFromInt(_data, _str))
+            if (!convertFromFloat(_data, _str))
+                convertFromDouble(_data, _str);
 
-	_data.precision = getPrecision(_str);
-	showConvert(_data);
+    _data.precision = getPrecision(_str);
+    showConvert(_data);
 }
