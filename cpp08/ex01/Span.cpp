@@ -40,12 +40,7 @@ void Span::addNumber(int _value)
 void Span::addNumber(std::vector<int>::iterator _begin, std::vector<int>::iterator _end)
 {
     for (std::vector<int>::iterator it = _begin; it != _end; ++it)
-    {
-        if (span.size() >= length)
-            throw SpanFullException();
-
-        span.push_back(*it);
-    }
+        addNumber(*it);
 }
 
 unsigned int Span::shortestSpan()
@@ -54,14 +49,14 @@ unsigned int Span::shortestSpan()
         throw SpanNotEnoughNumberException();
 
     unsigned int _shortest = std::numeric_limits<unsigned int>::max();
+    std::vector<int> _sorted = span;
+    std::sort(span.begin(), span.end());
 
-    for (std::vector<int>::iterator it = span.begin(); it != span.end(); ++it) {
-        for (std::vector<int>::iterator jt = it + 1; jt != span.end(); ++jt) {
-            unsigned int diff = std::abs(*it - *jt);
-            if (diff < _shortest) {
-                _shortest = diff;
-            }
-        }
+    for (std::vector<int>::iterator it = _sorted.begin() + 1; it != _sorted.end(); ++it) {
+        unsigned int diff = std::abs(*it - *(it - 1));
+
+        if (diff < _shortest)
+            _shortest = diff;
     }
 
     return _shortest;
