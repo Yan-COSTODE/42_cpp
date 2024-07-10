@@ -1,6 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-~BitcoinExchange::BitcoinExchange()
+BitcoinExchange::~BitcoinExchange()
 {
 }
 
@@ -207,15 +207,22 @@ bool BitcoinExchange::IsValidDate(std::string _date)
 
 float BitcoinExchange::GetNearestMult(std::string _date)
 {
-    if (data[_date])
-        return data[_date];
-
-    _date = GetPrecedentDay(_date);
-
-    if (_date.empty())
+    if (data.begin()->first > _date)
         return -1;
 
-    return GetNearestMult(_date);
+    if (data.rbegin()->first < _date)
+        return data.rbegin()->second;
+
+    while (true)
+    {
+        if (data.find(_date) != data.end())
+            return data[_date];
+
+        _date = GetPrecedentDay(_date);
+
+        if (_date.empty())
+            return -1;
+    }
 }
 
 std::string BitcoinExchange::GetPrecedentDay(std::string _date)
@@ -226,7 +233,10 @@ std::string BitcoinExchange::GetPrecedentDay(std::string _date)
         return "";
 
     _tm.tm_mday -= 1;
-    std::mktime(&_tm);
+
+    if (std::mktime(&_tm) == -1)
+        return "";
+
     char _buffer[11];
     strftime(_buffer, sizeof(_buffer), "%Y-%m-%d", &_tm);
     return std::string(_buffer);
