@@ -14,22 +14,18 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 	const_cast<int&>(gradeExec) = 137;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &_other)
-{
-	const_cast<std::string&>(target) = _other.target;
-	const_cast<std::string&>(name) = _other.name;
-	status = _other.status;
-	const_cast<int&>(gradeSign) = _other.gradeSign;
-	const_cast<int&>(gradeExec) = _other.gradeExec;
-}
-
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &_target)
 {
-	const_cast<std::string&>(target) = _target;
-	const_cast<std::string&>(name) = "Shrubbery Creation";
-	status = false;
-	const_cast<int&>(gradeSign) = 145;
-	const_cast<int&>(gradeExec) = 137;
+    const_cast<std::string&>(target) = _target;
+    const_cast<std::string&>(name) = "Shrubbery Creation";
+    status = false;
+    const_cast<int&>(gradeSign) = 145;
+    const_cast<int&>(gradeExec) = 137;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &_other) : AForm(_other)
+{
+	*this = _other;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &_other)

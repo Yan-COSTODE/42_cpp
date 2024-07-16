@@ -13,22 +13,18 @@ PresidentialPardonForm::PresidentialPardonForm()
 	const_cast<int&>(gradeExec) = 5;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &_other)
-{
-	const_cast<std::string&>(target) = _other.target;
-	const_cast<std::string&>(name) = _other.name;
-	status = _other.status;
-	const_cast<int&>(gradeSign) = _other.gradeSign;
-	const_cast<int&>(gradeExec) = _other.gradeExec;
-}
-
 PresidentialPardonForm::PresidentialPardonForm(const std::string &_target)
 {
-	const_cast<std::string&>(target) = _target;
-	const_cast<std::string&>(name) = "Presidential Pardon";
-	status = false;
-	const_cast<int&>(gradeSign) = 25;
-	const_cast<int&>(gradeExec) = 5;
+    const_cast<std::string&>(target) = _target;
+    const_cast<std::string&>(name) = "Presidential Pardon";
+    status = false;
+    const_cast<int&>(gradeSign) = 25;
+    const_cast<int&>(gradeExec) = 5;
+}
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &_other) : AForm(_other)
+{
+	*this = _other;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &_other)

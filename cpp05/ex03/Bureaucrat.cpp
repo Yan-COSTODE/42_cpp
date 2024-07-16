@@ -11,12 +11,6 @@ Bureaucrat::Bureaucrat()
 	grade = 150;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& _other)
-{
-	const_cast<std::string&>(name) = _other.name;
-	grade = _other.grade;
-}
-
 Bureaucrat::Bureaucrat(const std::string& _name, int _grade)
 {
 	const_cast<std::string&>(name) = _name;
@@ -25,6 +19,11 @@ Bureaucrat::Bureaucrat(const std::string& _name, int _grade)
 	if (_grade < 1)
 		throw GradeTooHighException();
 	grade = _grade;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& _other)
+{
+    *this = _other;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &_other)

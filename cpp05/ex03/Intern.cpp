@@ -10,7 +10,7 @@ Intern::Intern()
 
 Intern::Intern(const Intern& _other)
 {
-	(void)_other;
+	*this = _other;
 }
 
 Intern &Intern::operator=(const Intern &_other)

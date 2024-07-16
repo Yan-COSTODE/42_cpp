@@ -50,8 +50,15 @@ void GoHigh()
 
 int main()
 {
+    std::cout << "\x1b[1;37m----- Grade too low -----\x1b[0m" << std::endl;
 	TooLow();
+    std::cout << std::endl;
+    std::cout << "\x1b[1;37m----- Grade too high -----\x1b[0m" << std::endl;
 	TooHigh();
+    std::cout << std::endl;
+    std::cout << "\x1b[1;37m----- Grade go low -----\x1b[0m" << std::endl;
 	GoLow();
+    std::cout << std::endl;
+    std::cout << "\x1b[1;37m----- Grade go high -----\x1b[0m" << std::endl;
 	GoHigh();
 }

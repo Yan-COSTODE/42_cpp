@@ -10,20 +10,19 @@ Form::Form() : gradeSign(150), gradeExec(150)
 	status = false;
 }
 
-Form::Form(const Form& _other) : gradeSign(_other.gradeSign), gradeExec(_other.gradeExec)
-{
-	const_cast<std::string&>(name) = _other.name;
-	status = _other.status;
-}
-
 Form::Form(const std::string& _name, int _gradeSign, int _gradeExec) : gradeSign(_gradeSign), gradeExec(_gradeExec)
 {
-	const_cast<std::string&>(name) = _name;
-	status = false;
-	if (gradeSign > 150 || gradeExec > 150)
-		throw GradeTooLowException();
-	if (gradeSign < 1 || gradeExec < 1)
-		throw GradeTooHighException();
+    const_cast<std::string&>(name) = _name;
+    status = false;
+    if (gradeSign > 150 || gradeExec > 150)
+        throw GradeTooLowException();
+    if (gradeSign < 1 || gradeExec < 1)
+        throw GradeTooHighException();
+}
+
+Form::Form(const Form& _other) : gradeSign(_other.gradeSign), gradeExec(_other.gradeExec)
+{
+	*this = _other;
 }
 
 Form &Form::operator=(const Form &_other)
