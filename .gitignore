@@ -1,4 +1,4 @@
-.ccls-cache
-.idea
+*.ccls-cache
+*.idea
 data.csv
 input.txt
