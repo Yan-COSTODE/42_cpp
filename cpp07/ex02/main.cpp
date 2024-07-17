@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 50
 
 int main(void)
 {
@@ -12,21 +12,25 @@ int main(void)
 
     for (int i = 0; i < MAX_VAL; i++)
     {
-        const int value = rand();
+        const int value = rand() & MAX_VAL;
         numbers[i] = value;
         mirror[i] = value;
     }
 
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
+    Array<int> tmp = numbers;
+    Array<int> test(tmp);
 
     for (int i = 0; i < MAX_VAL; i++)
     {
+        tmp[i]++;
+        std::cout << "[" << numbers[i] << "] ";
+        std::cout << "[" << tmp[i] << "] ";
+        std::cout << "[" << test[i] << "]" << std::endl;
+
         if (mirror[i] != numbers[i])
         {
             std::cerr << "didn't save the same value!!" << std::endl;
+            delete[] mirror;
             return 1;
         }
     }
@@ -44,9 +48,6 @@ int main(void)
     catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }
-
-    for (int i = 0; i < MAX_VAL; i++)
-        numbers[i] = rand();
 
     delete[] mirror;
     return 0;

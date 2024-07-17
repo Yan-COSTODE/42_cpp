@@ -7,7 +7,7 @@ template<typename T>
 class Array {
     private:
         T* array;
-        unsigned int length;
+        size_t length;
 
     public:
         ~Array()
@@ -57,7 +57,7 @@ class Array {
             return array[_index];
         }
 
-        unsigned int size()
+        size_t size()
         {
             return length;
         }
