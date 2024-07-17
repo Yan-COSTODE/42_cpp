@@ -1,7 +1,39 @@
 #include "ScalarConverter.hpp"
 
+template<typename T>
+ScalarConverter::Converted<T>::Converted(bool _status, T _data, std::string _brut)
+{
+    status = _status;
+    brut = _brut;
+    data = _data;
+}
+
+ScalarConverter::Data::Data()
+{
+    c = Converted<char>();
+    i = Converted<int>();
+    f = Converted<float>();
+    d = Converted<double>();
+    precision = 1;
+}
+
+ScalarConverter::~ScalarConverter()
+{
+}
+
 ScalarConverter::ScalarConverter()
 {
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& _other)
+{
+    *this = _other;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& _other)
+{
+    (void)_other;
+    return *this;
 }
 
 bool ScalarConverter::atod(const std::string &_str, double &_result, double _min, double _max)

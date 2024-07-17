@@ -4,6 +4,21 @@ Base::~Base()
 {
 }
 
+Base::Base()
+{
+}
+
+Base::Base(const Base& _other)
+{
+    *this = _other;
+}
+
+Base& Base::operator=(const Base& _other)
+{
+    (void)_other;
+    return *this;
+}
+
 Base *Base::generate()
 {
     std::srand(std::time(0));

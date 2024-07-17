@@ -9,39 +9,30 @@
 #include <cmath>
 
 class ScalarConverter {
-	template<typename T>
-	struct Converted {
-		bool status;
-		std::string brut;
-		T data;
+    template<typename T>
+    struct Converted {
+        bool status;
+        std::string brut;
+        T data;
 
-		Converted(bool _status = false, T _data = 0, std::string _brut = "")
-		{
-			status = _status;
-			data = _data;
-			brut = _brut;
-		}
-	};
+        Converted(bool _status = false, T _data = 0, std::string _brut = "");
+    };
 
-	struct Data {
-		Converted<char> c;
-		Converted<int> i;
-		Converted<float> f;
-		Converted<double> d;
-		size_t precision;
+    struct Data {
+        Converted<char> c;
+        Converted<int> i;
+        Converted<float> f;
+        Converted<double> d;
+        size_t precision;
 
-		Data()
-		{
-			c = Converted<char>();
-			i = Converted<int>();
-			f = Converted<float>();
-			d = Converted<double>();
-			precision = 1;
-		}
-	};
+        Data();
+    };
 
 	private:
-		ScalarConverter();
+        ~ScalarConverter();
+        ScalarConverter();
+        ScalarConverter(const ScalarConverter& _other);
+        ScalarConverter& operator=(const ScalarConverter& _other);
 		static bool atod(const std::string& _str, double& _result, double _min, double _max);
 		static bool convertFromBrut(Data& _data, const std::string& _str);
 		static bool convertFromChar(Data& _data, const std::string& _str);

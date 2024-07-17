@@ -10,6 +10,9 @@
 class Base {
     public:
         virtual ~Base();
+        Base();
+        Base(const Base& _other);
+        Base& operator=(const Base& _other);
         static Base* generate();
         static void identify(Base *_p);
         static void identify(Base& _p);
