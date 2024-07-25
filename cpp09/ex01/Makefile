@@ -3,7 +3,7 @@ NAME = RPN
 SRCS = main.cpp RPN.cpp
 HEADER = RPN.hpp
 OBJS = $(SRCS:.cpp=.o)
-CFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CFLAGS = -Wall -Wextra -Werror -gdwarf-4 -std=c++98
 
 all:$(NAME)
 

@@ -31,11 +31,9 @@ int PmergeMe::IsValidNumber(std::string _number)
 
         return _value;
     }
-    else
-    {
-        std::cerr << "\x1b[1;31mError: can't comprehend this number => " << _number << "\x1b[0m" << std::endl;
-        return -1;
-    }
+
+    std::cerr << "\x1b[1;31mError: can't comprehend this number => " << _number << "\x1b[0m" << std::endl;
+    return -1;
 }
 
 void PmergeMe::Init(int _argc, char **_argv)
@@ -77,8 +75,8 @@ void PmergeMe::Display(std::string _msg)
 
 void PmergeMe::DisplayTime()
 {
-    std::cout << "\x1b[1;37mTime to process a range of " << vData.size() <<" elements with std::vector : " << vTime << " ms" << std::endl;
-    std::cout << "\x1b[1;37mTime to process a range of " << dData.size() <<" elements with std::deque  : " << dTime << " ms" << std::endl;
+    std::cout << "\x1b[1;37mTime to process a range of " << vData.size() <<" elements with std::vector : " << vTime << " ms\x1b[0m" << std::endl;
+    std::cout << "\x1b[1;37mTime to process a range of " << dData.size() <<" elements with std::deque  : " << dTime << " ms\x1b[0m" << std::endl;
 }
 
 void PmergeMe::InitVector(int _argc, char **_argv)
@@ -117,32 +115,35 @@ void PmergeMe::SortVector(int _left, int _right)
         SortVector(_mid + 1, _right);
 
         if (_right - _left + 1 > 2)
-        {
-            std::vector<int> _tmp(_right - _left + 1);
-            int i = _left;
-            int j = _mid + 1;
-            size_t k = 0;
-
-            while (i <= _mid && j <= _right)
-            {
-                if (vData[i] <= vData[j])
-                    _tmp[k++] = vData[i++];
-                else
-                    _tmp[k++] = vData[j++];
-            }
-
-            while (i <= _mid)
-                _tmp[k++] = vData[i++];
-
-            while (j <= _right)
-                _tmp[k++] = vData[j++];
-
-            for (k = 0; k < _tmp.size(); k++)
-                vData[_left + k] = _tmp[k];
-        }
+            MergeVector(_left, _mid, _right);
         else
             InsertionVector(_left, _right);
     }
+}
+
+void PmergeMe::MergeVector(int _left, int _mid, int _right)
+{
+    std::vector<int> _tmp(_right - _left + 1);
+    int i = _left;
+    int j = _mid + 1;
+    size_t k = 0;
+
+    while (i <= _mid && j <= _right)
+    {
+        if (vData[i] <= vData[j])
+            _tmp[k++] = vData[i++];
+        else
+            _tmp[k++] = vData[j++];
+    }
+
+    while (i <= _mid)
+        _tmp[k++] = vData[i++];
+
+    while (j <= _right)
+        _tmp[k++] = vData[j++];
+
+    for (k = 0; k < _tmp.size(); k++)
+        vData[_left + k] = _tmp[k];
 }
 
 void PmergeMe::InsertionVector(int _left, int _right)
@@ -172,32 +173,35 @@ void PmergeMe::SortDeque(int _left, int _right)
         SortVector(_mid + 1, _right);
 
         if (_right - _left + 1 > 2)
-        {
-            std::deque<int> _tmp(_right - _left + 1);
-            int i = _left;
-            int j = _mid + 1;
-            size_t k = 0;
-
-            while (i <= _mid && j <= _right)
-            {
-                if (dData[i] <= dData[j])
-                    _tmp[k++] = dData[i++];
-                else
-                    _tmp[k++] = dData[j++];
-            }
-
-            while (i <= _mid)
-                _tmp[k++] = dData[i++];
-
-            while (j <= _right)
-                _tmp[k++] = dData[j++];
-
-            for (k = 0; k < _tmp.size(); k++)
-                dData[_left + k] = _tmp[k];
-        }
+            MergeDeque(_left, _mid, _right);
         else
             InsertionDeque(_left, _right);
     }
+}
+
+void PmergeMe::MergeDeque(int _left, int _mid, int _right)
+{
+    std::deque<int> _tmp(_right - _left + 1);
+    int i = _left;
+    int j = _mid + 1;
+    size_t k = 0;
+
+    while (i <= _mid && j <= _right)
+    {
+        if (dData[i] <= dData[j])
+            _tmp[k++] = dData[i++];
+        else
+            _tmp[k++] = dData[j++];
+    }
+
+    while (i <= _mid)
+        _tmp[k++] = dData[i++];
+
+    while (j <= _right)
+        _tmp[k++] = dData[j++];
+
+    for (k = 0; k < _tmp.size(); k++)
+        dData[_left + k] = _tmp[k];
 }
 
 void PmergeMe::InsertionDeque(int _left, int _right)

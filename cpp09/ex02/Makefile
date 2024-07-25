@@ -3,7 +3,7 @@ NAME = PmergeMe
 SRCS = main.cpp PmergeMe.cpp
 HEADER = PmergeMe.hpp
 OBJS = $(SRCS:.cpp=.o)
-CFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CFLAGS = -Wall -Wextra -Werror -gdwarf-4 -std=c++98
 
 all:$(NAME)
 

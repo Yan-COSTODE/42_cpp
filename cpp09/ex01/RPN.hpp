@@ -18,7 +18,7 @@ class RPN {
         RPN(const RPN& _other);
         RPN& operator=(const RPN& _other);
         void Calculate(std::string _prompt);
-        void Execute(char _operator);
+        bool Execute(char _operator);
 };
 
 #endif

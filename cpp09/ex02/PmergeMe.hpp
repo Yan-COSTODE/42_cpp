@@ -22,6 +22,8 @@ class PmergeMe {
         void DisplayTime();
         void SortVector(int _left, int _right);
         void SortDeque(int _left, int _right);
+        void MergeVector(int _left, int _mid, int _right);
+        void MergeDeque(int _left, int _mid, int _right);
         void InsertionVector(int _left, int _right);
         void InsertionDeque(int _left, int _right);
         void InitVector(int _argc, char **_argv);
